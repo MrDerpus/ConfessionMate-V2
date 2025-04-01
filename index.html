@@ -29,7 +29,7 @@
 			</p>
 		
 			<div class="home-panels">
-				<!--div class="home-card">
+				<div class="home-card">
 					<h3>📿 Rosary</h3>
 					<p>Pray bead by bead with a virtual Rosary, without any distractions.</p>
 				</div>
@@ -41,7 +41,7 @@
 					<h3>🌿 Community</h3>
 					<p>Support local businesses who value faith, honesty, and good work.</p>
 				</div>
-			</div-->
+			</div>
 		</section>
 		
 
@@ -58,6 +58,25 @@
 		<section id="community" class="page">
 			<h2>Community Board</h2>
 			<p>Support and discover local businesses that care.</p>
+
+			<button id="toggle-filters" class="filter-toggle">🔍 Filter Ads</button>
+			<div id="filter-container" class="ad-search hidden">
+				<input type="text" id="country-input" placeholder="Country (e.g. Australia)">
+				<input type="text" id="state-input" placeholder="State (e.g. Queensland)">
+				<input type="text" id="city-input" placeholder="City (e.g. Brisbane)">
+				<input type="text" id="suburb-input" placeholder="Suburb (e.g. Oxley)"><br>
+				<input type="text" id="category-input" placeholder="Category (e.g. Plumbing)">
+			</div>
+
+
+			<!--div class="ad-search">
+				<input type="text" id="category-input" placeholder="Category (e.g. Plumbing)">
+			</div-->
+			
+			<div id="ad-board" class="ad-board">
+				<!-- Ads will appear here -->
+			</div>
+			
 		</section>
 
 		<section id="about" class="page">
@@ -93,22 +112,6 @@
 		<p>&copy; 2025 ConfessionMate. All rights reserved.</p>
 	</footer>
 
-	<script>
-		const links = document.querySelectorAll('nav a');
-		const pages = document.querySelectorAll('.page');
-
-		links.forEach(link => {
-			link.addEventListener('click', (e) => {
-				e.preventDefault();
-				const target = link.dataset.target;
-
-				pages.forEach(page => {
-					page.classList.remove('active');
-				});
-
-				document.getElementById(target).classList.add('active');
-			});
-		});
-	</script>
+	<script src="script.js"></script>
 </body>
 </html>

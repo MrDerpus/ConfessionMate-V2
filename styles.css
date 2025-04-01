@@ -1,20 +1,22 @@
 /*======================================
 	Root Variables for Styling
+	- Defines color palette and shared design values
 ======================================*/
 :root
 {
 	--main-background: #1e1e1e; /* Dark background */
 	--text: #eee; /* Soft white text */
 	--accent: #294683; /* Muted blue-green */
-	--accent-light: #90c3d4; /* Lighter blue highlight */
+	--accent-light: #195e75; /* Lighter blue highlight */
 	--page-background: #2a2a2a; /* Dark panel background */
-	--radius: 12px;
-	--footer-text: #ccc;
+	--radius: 12px; /* Corner radius (to be set) */
+	--footer-text: #ccc; /* Footer text color */
 }
 
 
 /*======================================
 	Universal Reset & Box Model
+	- Ensures padding/border included in width/height
 ======================================*/
 * 
 {
@@ -22,6 +24,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 
 /*======================================
 	Body Styling
@@ -34,6 +37,7 @@ body
 	color: var(--text);
 	line-height: 1.6;
 }
+
 
 /*======================================
 	Header Styling
@@ -48,6 +52,7 @@ header
 	border-bottom-right-radius: var(--radius);
 }
 
+
 /*======================================
 	Main Site Title
 ======================================*/
@@ -56,6 +61,7 @@ header h1
 	font-size: 1.8rem;
 	margin-bottom: 0.5rem;
 }
+
 
 /*======================================
 	Navigation Links (List)
@@ -69,6 +75,7 @@ nav ul
 	gap: 1rem;
 }
 
+
 /*======================================
 	Navigation Links (Anchors)
 	- Styled links inside nav bar
@@ -79,6 +86,7 @@ nav a
 	text-decoration: none;
 	font-weight: bold;
 }
+
 
 /*======================================
 	Page Container
@@ -92,6 +100,7 @@ nav a
 	height: 75vh;
 	margin-top: 1rem;
 }
+
 
 /*======================================
 	Individual Page Sections
@@ -111,15 +120,19 @@ nav a
 	border-radius: var(--radius);
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.0); /* Optional shadow improvement */
 }
+
+/* Custom scrollbar styling for pages */
 .page::-webkit-scrollbar
 {
 	width: 5px;
 }
+
 .page::-webkit-scrollbar-thumb
 {
 	background-color: var(--accent-light);
 	border-radius: 6px;
 }
+
 
 /*======================================
 	Active Page
@@ -130,6 +143,7 @@ nav a
 	left: 0;
 	z-index: 1;
 }
+
 
 /*======================================
 	Footer Styling
@@ -148,7 +162,6 @@ footer
 	Home Page Styling
 	- Warm and welcoming intro content
 ======================================*/
-
 .home-welcome
 {
 	font-size: 2rem;
@@ -184,4 +197,98 @@ footer
 .home-card:hover
 {
 	background-color: #353535;
+}
+
+
+/*======================================
+	Ad Board
+	- Container and styling for business ad cards
+======================================*/
+.ad-board
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	margin-top: 1rem;
+}
+
+.ad-card
+{
+	background-color: #2a2a2a;
+	padding: 1rem;
+	border-radius: var(--radius);
+	box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+
+/*======================================
+	Ad Images
+	- Responsive business card display
+======================================*/
+.ad-image
+{
+	max-width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 8px;
+	margin-bottom: 0.5rem;
+}
+
+
+/*======================================
+	Ad Filter Inputs
+	- Search field styling for category/region
+======================================*/
+.ad-search
+{
+	margin-bottom: 1rem;
+}
+
+#ad-board input,
+#ad-board textarea
+{
+	width: 100%;
+	padding: 0.75rem;
+	border-radius: var(--radius);
+	border: 1px solid #444;
+	background-color: #2f2f2f;
+	color: #ccc;
+	font-size: 1rem;
+}
+
+#ad-board input::placeholder
+{
+	color: #777;
+}
+
+
+/*======================================
+	Filter Toggle Button
+	- Show/hide search input container
+======================================*/
+.filter-toggle
+{
+	background-color: var(--accent);
+	color: #fff;
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: var(--radius);
+	cursor: pointer;
+	margin-bottom: 1rem;
+	transition: background-color 0.3s ease;
+}
+
+.filter-toggle:hover
+{
+	background-color: var(--accent-light);
+}
+
+
+/*======================================
+	Hidden Utility Class
+	- Used to hide elements like filters
+======================================*/
+.hidden
+{
+	display: none;
 }
