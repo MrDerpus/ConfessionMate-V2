@@ -1,0 +1,187 @@
+/*======================================
+	Root Variables for Styling
+======================================*/
+:root
+{
+	--main-background: #1e1e1e; /* Dark background */
+	--text: #eee; /* Soft white text */
+	--accent: #294683; /* Muted blue-green */
+	--accent-light: #90c3d4; /* Lighter blue highlight */
+	--page-background: #2a2a2a; /* Dark panel background */
+	--radius: 12px;
+	--footer-text: #ccc;
+}
+
+
+/*======================================
+	Universal Reset & Box Model
+======================================*/
+* 
+{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/*======================================
+	Body Styling
+	- Sets font, background, text color
+======================================*/
+body
+{
+	font-family: 'Segoe UI', sans-serif;
+	background-color: var(--main-background);
+	color: var(--text);
+	line-height: 1.6;
+}
+
+/*======================================
+	Header Styling
+	- Background, text, rounded bottom corners
+======================================*/
+header
+{
+	background-color: var(--accent);
+	color: var(--text);
+	padding: 1rem;
+	border-bottom-left-radius: var(--radius);
+	border-bottom-right-radius: var(--radius);
+}
+
+/*======================================
+	Main Site Title
+======================================*/
+header h1
+{
+	font-size: 1.8rem;
+	margin-bottom: 0.5rem;
+}
+
+/*======================================
+	Navigation Links (List)
+	- Horizontal layout with spacing
+======================================*/
+nav ul
+{
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+/*======================================
+	Navigation Links (Anchors)
+	- Styled links inside nav bar
+======================================*/
+nav a
+{
+	color: var(--text);
+	text-decoration: none;
+	font-weight: bold;
+}
+
+/*======================================
+	Page Container
+	- Holds all page "sections" in a swipe layout
+======================================*/
+.page-container
+{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 75vh;
+	margin-top: 1rem;
+}
+
+/*======================================
+	Individual Page Sections
+	- Slide-in layout with transitions
+======================================*/
+.page
+{
+	position: absolute;
+	top: 0;
+	left: 100%;
+	width: 100%;
+	height: 100%;
+	background: var(--page-background);
+	padding: 2rem;
+	overflow-y: auto; /* This enables scrolling */
+	transition: left 0.5s ease-in-out;
+	border-radius: var(--radius);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.0); /* Optional shadow improvement */
+}
+.page::-webkit-scrollbar
+{
+	width: 5px;
+}
+.page::-webkit-scrollbar-thumb
+{
+	background-color: var(--accent-light);
+	border-radius: 6px;
+}
+
+/*======================================
+	Active Page
+	- Currently visible section
+======================================*/
+.page.active
+{
+	left: 0;
+	z-index: 1;
+}
+
+/*======================================
+	Footer Styling
+	- Small, centered copyright
+======================================*/
+footer
+{
+	text-align: center;
+	margin-top: 2rem;
+	font-size: 0.875rem;
+	color: var(--footer-text);
+}
+
+
+/*======================================
+	Home Page Styling
+	- Warm and welcoming intro content
+======================================*/
+
+.home-welcome
+{
+	font-size: 2rem;
+	color: var(--accent-light);
+	margin-bottom: 1rem;
+}
+
+.home-intro
+{
+	font-size: 1.1rem;
+	color: var(--text);
+	margin-bottom: 2rem;
+	max-width: 700px;
+	line-height: 1.8;
+}
+
+.home-panels
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.home-card
+{
+	background-color: #2d2d2d;
+	padding: 1rem;
+	border-radius: var(--radius);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+	transition: background-color 0.3s ease;
+}
+
+.home-card:hover
+{
+	background-color: #353535;
+}

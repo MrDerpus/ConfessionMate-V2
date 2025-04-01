@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ConfessionMate</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+		<h1>ConfessionMate</h1>
+		<nav>
+			<ul>
+				<li><a href="#" data-target="home">Home</a></li>
+				<li><a href="#" data-target="rosary">Rosary</a></li>
+				<li><a href="#" data-target="notes">Notes</a></li>
+				<li><a href="#" data-target="community">Community</a></li>
+				<li><a href="#" data-target="about">About</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="page-container">
+		<section id="home" class="page active">
+			<h2 class="home-welcome">Welcome to ConfessionMate</h2>
+			<p class="home-intro">
+				A quiet space for reflection, prayer, and preparation.  
+				This is your place to take a breath and return to grace.
+			</p>
+		
+			<div class="home-panels">
+				<!--div class="home-card">
+					<h3>📿 Rosary</h3>
+					<p>Pray bead by bead with a virtual Rosary, without any distractions.</p>
+				</div>
+				<div class="home-card">
+					<h3>📝 Notes</h3>
+					<p>Jot down your thoughts in a secure space: encrypted, private, and yours alone.</p>
+				</div>
+				<div class="home-card">
+					<h3>🌿 Community</h3>
+					<p>Support local businesses who value faith, honesty, and good work.</p>
+				</div>
+			</div-->
+		</section>
+		
+
+		<section id="rosary" class="page">
+			<h2>Rosary</h2>
+			<p>Pray through each bead with peace and purpose.</p>
+		</section>
+
+		<section id="notes" class="page">
+			<h2>Notes</h2>
+			<p>Write your reflections securely and privately.</p>
+		</section>
+
+		<section id="community" class="page">
+			<h2>Community Board</h2>
+			<p>Support and discover local businesses that care.</p>
+		</section>
+
+		<section id="about" class="page">
+			<h2>What we stand for:</h2>
+			<p>
+			ConfessionMate was created from a place of deep love for the Sacrament & for the people who struggle to approach it.<br><br>
+
+			We know how hard it can be to come back to Confession. The nerves, the doubts, the not knowing where to start.<br><br>
+			
+			That’s why we built ConfessionMate: to be a simple, safe space for you to gather your thoughts, to reflect,
+			and walk toward mercy without pressure, without judgement, and without anyone watching.<br><br>
+			
+			Nothing you write will ever be stored on a server or on your device, your confessions are encrypted with care and only readable by you.<br>
+			Your confession is only between you and our all loving and merciful God.<br><br>
+			
+			On ConfessionMate you’ll find: a virtual Rosary to pray, scripture for strength, helpful tips, and little reminders of God’s
+			unfailing & never ending love.<br><br>
+			
+			And because we believe in community, we’ve opened space for local businesses to share what they offer.
+			Good honest work and good service, all close to home.<br><br>
+
+			No sign-ups. No subscriptions. No ads. Ever.<br>
+			Just a peaceful place to ready yourself for Gods mercy.<br><br>
+
+			ConfessionMate will be free and open source until the end of time.<br>(A very long time from now, hopefully).<br><br>
+			Whether you’re returning after years or preparing for the hundredth time, ConfessionMate is here to help you in the confessional.<br>
+			Come as you are.
+			</p>
+		</section>
+	</div>
+
+	<footer>
+		<p>&copy; 2025 ConfessionMate. All rights reserved.</p>
+	</footer>
+
+	<script>
+		const links = document.querySelectorAll('nav a');
+		const pages = document.querySelectorAll('.page');
+
+		links.forEach(link => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const target = link.dataset.target;
+
+				pages.forEach(page => {
+					page.classList.remove('active');
+				});
+
+				document.getElementById(target).classList.add('active');
+			});
+		});
+	</script>
+</body>
+</html>
