@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Debug no caching, for now-->
+	<meta http-equiv="pragma" content="no-cache" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ConfessionMate</title>
@@ -8,7 +10,7 @@
 </head>
 <body>
 	<header>
-		<h1>ConfessionMate</h1>
+		<!--h1>ConfessionMate</h1-->
 		<nav>
 			<ul>
 				<li><a href="#" data-target="home">Home</a></li>
@@ -24,26 +26,14 @@
 		<section id="home" class="page">
 			<h2 class="home-welcome">Welcome to ConfessionMate</h2>
 			<p class="home-intro">
-				A quiet space for reflection, prayer, and preparation.  
-				This is your place to take a breath and return to grace.
+				Here are some resources you may find helpful.
 			</p>
 		
-			<div class="home-panels">
-				<div class="home-card">
-					<h3>📿 Rosary</h3>
-					<p>Pray bead by bead with a virtual Rosary, without any distractions.</p>
-				</div>
-				<div class="home-card">
-					<h3>📝 Notes</h3>
-					<p>Jot down your thoughts in a secure space: encrypted, private, and yours alone.</p>
-				</div>
-				<div class="home-card">
-					<h3>🌿 Community</h3>
-					<p>Support local businesses who value faith, honesty, and good work.</p>
-				</div>
-			</div>
+			<div class="home-panels" id="home-cards-container"></div>
+
 		</section>
 		
+
 
 		<section id="rosary" class="page">
 			<h2>Rosary</h2>
@@ -51,14 +41,21 @@
 		</section>
 
 		<section id="notes" class="page active">
-			<h2>Notes</h2>
-			<p>Write your reflections securely and privately.</p><br>
+			<h4>Please forgive me father for I have sinned...</h4>
+			<h4>it has been x-weeks since my last confession</h4>
+			
 
 			<div id="notes-container">
 				<label for="notes-mode" id="mode-label">Encrypt</label>
 				<input type="checkbox" name="mode" id="notes-mode">
 				<textarea id="confession-notes"></textarea>
-				<button id="confession-button">Encrypt</button>
+				<button id="confession-button">Encrypt</button><br>
+				<h4>Act of Contrition:</h4>
+				<h4> O my God, I am heartily sorry for having offended Thee, and I detest
+					all my sins because of Thy just punishments, but most of all because
+					they offend Thee, my God, who art all good and deserving of all my love.
+					I firmly resolve with the help of Thy grace to sin no more and to avoid
+					the near occasion of sin. Amen.</h4>
 			</div>
 		</section>
 

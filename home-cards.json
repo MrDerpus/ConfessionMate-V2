@@ -1,0 +1,48 @@
+[
+	{
+		"id":"how-to",
+		"title":"How to: use this blasted thing",
+		"description":"",
+		"entries":
+		[
+			{
+				"author": "Is anything I type into this site saved anywhere?",
+				"text": "<b>Nope. Not a single thing.</b><br>Nothing you write on this site, even encrypted, is ever: saved, stored, or sent anywhere.<br>Why? Because even if it’s locked up with AES-256 encryption, your confession belongs to you.<br>What you do here is between you and our ever-loving & ever-merciful God.<br>ConfessionMate doesn’t store, track, or peek.<br>We simply provide a quiet, secure space with the tools to help you prepare: honestly, safely, and freely."
+			},
+			{
+				"author": "What can I do if I've forgotten my pincode or secret word?",
+				"text": "<b>Unfortunately, absolutely nothing.</b><br>The encrypted data can no longer be decrypted."
+			}
+		]
+	},
+	{
+		"id": "advice",
+		"title": "🧠 Priest Advice",
+		"description": "Do's and Dont's for confession, prayers and other advice",
+		"entries":
+		[
+			{
+				"author": "BLANK ON PURPOSE",
+				"text": "BLANK ON PURPOSE"
+			}
+		]
+	},
+	{
+		"id": "scripture",
+		"title": "📖 Scripture & Prayers",
+		"description": "Find verses and prayers to guide your heart.",
+		"entries":
+		[
+			{
+				"theme": "Strength",
+				"verse": "Philippians 4:13",
+				"text": "I can do all things through Christ who strengthens me."
+			},
+			{
+				"theme":"Strength",
+				"verse":"Saint Benedict prayer",
+				"text":"<b><i>Latin:</i></b><br>Crux sacra sit mihi lux<br>Nunquam draco sit mihi dux<br>Vade retro Satana<br>Nunquam suade mihi vana<br>Sunt mala quae libas<br>Ipse venena bibas<br><br><b><i>English:</i></b><br>The Holy Cross be my light<br>May the dragon never be my guide<br>Be gone Satan<br>Never tempt me with your iniquities<br>What you offer me is evil<br>Drink the poison yourself"
+			}
+		]
+	}
+]
