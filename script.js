@@ -78,3 +78,103 @@ document.querySelectorAll('nav a').forEach(link => {
 		document.getElementById(target).classList.add('active');
 	});
 });
+
+
+// set default values for all relevant options
+const checkbox_confession = document.getElementById('notes-mode');
+const button_confession = document.getElementById('confession-button');
+const modeLabel   = document.getElementById('mode-label');
+checkbox_confession.checked = true;
+button_confession.innerText = modeLabel.innerText;
+
+
+checkbox_confession.addEventListener('change', () =>
+{
+	modeLabel.textContent = checkbox_confession.checked ? "Encrypt" : "Decrypt";
+	button_confession.innerText = modeLabel.innerText;
+});
+
+
+
+function showAuthModal(callback)
+{
+	const modal = document.getElementById('auth-modal');
+	const pinInput = document.getElementById('pin-input');
+	const secretInput = document.getElementById('secret-input');
+	const submitBtn = document.getElementById('auth-submit');
+	const cancelBtn = document.getElementById('auth-cancel');
+
+	function closeModal()
+	{
+		modal.classList.add('hidden');
+		document.removeEventListener('keydown', handleEscape);
+	}
+
+	function handleEscape(e)
+	{
+		if(e.key === 'Escape')
+		{
+			closeModal();
+		}
+	}
+
+	pinInput.value = '';
+	secretInput.value = '';
+	modal.classList.remove('hidden');
+	pinInput.focus();
+
+	document.addEventListener('keydown', handleEscape);
+
+	submitBtn.onclick = () =>
+	{
+		const passcode = pinInput.value.trim();
+		const secret = secretInput.value.trim();
+
+		if (passcode.length !== 4 || isNaN(passcode))
+		{
+			alert("Please enter a valid 4-digit passcode.");
+			return;
+		}
+		if (!secret)
+		{
+			alert("Please enter your secret word.");
+			return;
+		}
+
+		closeModal();
+		callback(passcode, secret);
+	};
+
+	cancelBtn.onclick = () =>
+	{
+		closeModal();
+	};
+}
+
+
+
+
+document.getElementById('confession-button').addEventListener('click', () =>
+	{
+		showAuthModal((passcode, secret) => {
+			const notesText = document.getElementById('confession-notes').value;
+			const isEncrypting = document.getElementById('notes-mode').checked;
+	
+			if (isEncrypting)
+			{
+				encryptCompressed(notesText, passcode, secret)
+					.then(result => {
+						document.getElementById('confession-notes').value = result;
+					});
+			}
+			else
+			{
+				decryptCompressed(notesText, passcode, secret)
+					.then(result => {
+						document.getElementById('confession-notes').value = result;
+					})
+					.catch(() => alert("Incorrect code or corrupted input."));
+			}
+		});
+	});
+	

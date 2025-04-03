@@ -21,7 +21,7 @@
 	</header>
 
 	<div class="page-container">
-		<section id="home" class="page active">
+		<section id="home" class="page">
 			<h2 class="home-welcome">Welcome to ConfessionMate</h2>
 			<p class="home-intro">
 				A quiet space for reflection, prayer, and preparation.  
@@ -50,9 +50,16 @@
 			<p>Pray through each bead with peace and purpose.</p>
 		</section>
 
-		<section id="notes" class="page">
+		<section id="notes" class="page active">
 			<h2>Notes</h2>
-			<p>Write your reflections securely and privately.</p>
+			<p>Write your reflections securely and privately.</p><br>
+
+			<div id="notes-container">
+				<label for="notes-mode" id="mode-label">Encrypt</label>
+				<input type="checkbox" name="mode" id="notes-mode">
+				<textarea id="confession-notes"></textarea>
+				<button id="confession-button">Encrypt</button>
+			</div>
 		</section>
 
 		<section id="community" class="page">
@@ -74,7 +81,7 @@
 			</div-->
 			
 			<div id="ad-board" class="ad-board">
-				<!-- Ads will appear here -->
+				<!-- Ads will appear here based on what is in the ads-display.json file -->
 			</div>
 			
 		</section>
@@ -112,6 +119,26 @@
 		<p>&copy; 2025 ConfessionMate. All rights reserved.</p>
 	</footer>
 
+	<script src="lz-string.min.js"></script>
+	<script src="crypto.js"></script>
 	<script src="script.js"></script>
+
+	<!-- Confession pop up, asking the user to input credentials -->
+	<div id="auth-modal" class="modal hidden">
+		<div class="modal-content">
+			<h2>Enter Your Confession Key</h2>
+	
+			<label for="pin-input">Passcode (4 digits):</label>
+			<input type="password" id="pin-input" maxlength="4" inputmode="numeric" pattern="[0-9]*" />
+	
+			<label for="secret-input">Secret Word (5+ characters):</label>
+			<input type="text" id="secret-input" />
+	
+			<div style="display: flex; justify-content: space-between; gap: 1rem;">
+				<button id="auth-cancel" class="modal-btn">Cancel</button>
+				<button id="auth-submit" class="modal-btn">Submit</button>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
