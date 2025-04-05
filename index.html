@@ -23,7 +23,7 @@
 	</header>
 
 	<div class="page-container">
-		<section id="home" class="page">
+		<section id="home" class="page active">
 			<h2 class="home-welcome">Welcome to ConfessionMate</h2>
 			<p class="home-intro">
 				Here are some resources you may find helpful.
@@ -40,22 +40,33 @@
 			<p>Pray through each bead with peace and purpose.</p>
 		</section>
 
-		<section id="notes" class="page active">
-			<h4>Please forgive me father for I have sinned...</h4>
-			<h4>it has been x-weeks since my last confession</h4>
+		<section id="notes" class="page">
+			<h4>Please forgive me father for I have sinned.</h4>
+			<label for="last-confession">Date of your last confession:</label><br>
+			<input type="date" name="last-confession" id="last-confession">
+			<p id="confession-elapsed" style="margin-top: 0.5rem;"></p>
+
 			
 
 			<div id="notes-container">
-				<label for="notes-mode" id="mode-label">Encrypt</label>
+				
+				<div class="copy-controls">
+					<label for="notes-mode" id="mode-label">Encrypt</label>
 				<input type="checkbox" name="mode" id="notes-mode">
+					<!--span id="copy-status" class="hidden">Copied!</span><br-->
+					<button type="button" id="copy-button">Copy to Clipboard</button><br>
+				</div>
+				
 				<textarea id="confession-notes"></textarea>
-				<button id="confession-button">Encrypt</button><br>
+				<button type="button" id="confession-button">Encrypt</button><br>
 				<h4>Act of Contrition:</h4>
-				<h4> O my God, I am heartily sorry for having offended Thee, and I detest
+				<h4>
+					O my God, I am heartily sorry for having offended Thee, and I detest
 					all my sins because of Thy just punishments, but most of all because
 					they offend Thee, my God, who art all good and deserving of all my love.
 					I firmly resolve with the help of Thy grace to sin no more and to avoid
-					the near occasion of sin. Amen.</h4>
+					the near occasion of sin. Amen.
+				</h4>
 			</div>
 		</section>
 
@@ -102,7 +113,7 @@
 			And because we believe in community, we’ve opened space for local businesses to share what they offer.
 			Good honest work and good service, all close to home.<br><br>
 
-			No sign-ups. No subscriptions. No ads. Ever.<br>
+			No sign-ups. No subscriptions. No pop-up ads. Ever.<br>
 			Just a peaceful place to ready yourself for Gods mercy.<br><br>
 
 			ConfessionMate will be free and open source until the end of time.<br>(A very long time from now, hopefully).<br><br>
@@ -116,9 +127,7 @@
 		<p>&copy; 2025 ConfessionMate. All rights reserved.</p>
 	</footer>
 
-	<script src="lz-string.min.js"></script>
-	<script src="crypto.js"></script>
-	<script src="script.js"></script>
+	
 
 	<!-- Confession pop up, asking the user to input credentials -->
 	<div id="auth-modal" class="modal hidden">
@@ -132,10 +141,17 @@
 			<input type="text" id="secret-input" />
 	
 			<div style="display: flex; justify-content: space-between; gap: 1rem;">
-				<button id="auth-cancel" class="modal-btn">Cancel</button>
-				<button id="auth-submit" class="modal-btn">Submit</button>
+				<button type="button" id="auth-cancel" class="modal-btn">Cancel</button>
+				<button type="button" id="auth-submit" class="modal-btn">Submit</button>
 			</div>
 		</div>
 	</div>
+
+	<!-- Copied to clipboard 'Toast' pop up -->
+	<div id="toast" class="toast hidden">Copied to clipboard</div>
+
+	<script src="lz-string.min.js"></script>
+	<script src="crypto.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>

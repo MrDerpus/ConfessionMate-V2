@@ -1,22 +1,22 @@
 /*======================================
 	Root Variables for Styling
-	- Defines color palette and shared design values
+	- Centralized color scheme and spacing
 ======================================*/
 :root
 {
 	--main-background: #1e1e1e; /* Dark background */
 	--text: #eee; /* Soft white text */
-	--accent: #294683; /* Muted blue-green */
-	--accent-light: #124ea8; /* Lighter blue highlight */
-	--page-background: #2a2a2a; /* Dark panel background */
-	--radius: 12px; /* Corner radius (to be set) */
+	--accent: #832938; /* Muted blue */
+	--accent-light: #d10d0d; /* Lighter blue highlight */
+	--page-background: #2a2a2a; /* Panel background */
+	--radius: 12px; /* Corner radius */
 	--footer-text: #ccc; /* Footer text color */
 }
 
 
 /*======================================
 	Universal Reset & Box Model
-	- Ensures padding/border included in width/height
+	- Removes default spacing and enables full-box sizing
 ======================================*/
 * 
 {
@@ -28,7 +28,7 @@
 
 /*======================================
 	Body Styling
-	- Sets font, background, text color
+	- Sets global font, text color, and background
 ======================================*/
 body
 {
@@ -41,7 +41,7 @@ body
 
 /*======================================
 	Header Styling
-	- Background, text, rounded bottom corners
+	- Banner and site title area with rounded bottom
 ======================================*/
 header
 {
@@ -64,8 +64,8 @@ header h1
 
 
 /*======================================
-	Navigation Links (List)
-	- Horizontal layout with spacing
+	Navigation Bar
+	- Horizontal nav links with spacing
 ======================================*/
 nav ul
 {
@@ -77,8 +77,8 @@ nav ul
 
 
 /*======================================
-	Navigation Links (Anchors)
-	- Styled links inside nav bar
+	Navigation Links
+	- Styled anchor elements inside nav
 ======================================*/
 nav a
 {
@@ -90,21 +90,21 @@ nav a
 
 /*======================================
 	Page Container
-	- Holds all page "sections" in a swipe layout
+	- Holds all content sections in a swipable layout
 ======================================*/
 .page-container
 {
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	height: 83vh;
+	height: 75vh;
 	margin-top: 1rem;
 }
 
 
 /*======================================
-	Individual Page Sections
-	- Slide-in layout with transitions
+	Individual Page Styling
+	- Animated slide-in sections
 ======================================*/
 .page
 {
@@ -115,13 +115,16 @@ nav a
 	height: 100%;
 	background: var(--page-background);
 	padding: 2rem;
-	overflow-y: auto; /* This enables scrolling */
+	overflow-y: auto;
 	transition: left 0.5s ease-in-out;
 	border-radius: var(--radius);
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.0); /* Optional shadow improvement */
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.0);
 }
 
-/* Custom scrollbar styling for pages */
+
+/*======================================
+	Custom Scrollbar for Pages
+======================================*/
 .page::-webkit-scrollbar
 {
 	width: 5px;
@@ -136,7 +139,7 @@ nav a
 
 /*======================================
 	Active Page
-	- Currently visible section
+	- The currently visible section
 ======================================*/
 .page.active
 {
@@ -146,8 +149,8 @@ nav a
 
 
 /*======================================
-	Footer Styling
-	- Small, centered copyright
+	Footer
+	- Small centered copyright
 ======================================*/
 footer
 {
@@ -159,13 +162,14 @@ footer
 
 
 /*======================================
-	Home Page Styling
-	- Warm and welcoming intro content
+	Home Page Styles
+	- Warm intro and interactive info cards
 ======================================*/
+
 .home-welcome
 {
 	font-size: 2rem;
-	color: var(--text);
+	color: var(--accent-light);
 	margin-bottom: 1rem;
 }
 
@@ -194,202 +198,6 @@ footer
 	transition: background-color 0.3s ease;
 }
 
-.home-card:hover
-{
-	background-color: #353535;
-}
-
-
-/*======================================
-	Ad Board
-	- Container and styling for business ad cards
-======================================*/
-.ad-board
-{
-	display: flex;
-	flex-direction: column;
-	gap: 1.5rem;
-	margin-top: 1rem;
-}
-
-.ad-card
-{
-	background-color: #2a2a2a;
-	padding: 1rem;
-	border-radius: var(--radius);
-	box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-
-/*======================================
-	Ad Images
-	- Responsive business card display
-======================================*/
-.ad-image
-{
-	max-width: 100%;
-	height: auto;
-	display: block;
-	border-radius: 8px;
-	margin-bottom: 0.5rem;
-}
-
-
-/*======================================
-	Ad Filter Inputs
-	- Search field styling for category/region
-======================================*/
-.ad-search
-{
-	margin-bottom: 1rem;
-}
-
-#ad-board input,
-#ad-board textarea
-{
-	width: 100%;
-	padding: 0.75rem;
-	border-radius: var(--radius);
-	border: 1px solid #444;
-	background-color: #2f2f2f;
-	color: #ccc;
-	font-size: 1rem;
-}
-
-#ad-board input::placeholder
-{
-	color: #777;
-}
-
-
-/*======================================
-	Filter Toggle Button
-	- Show/hide search input container
-======================================*/
-.filter-toggle
-{
-	background-color: var(--accent);
-	color: #fff;
-	padding: 0.5rem 1rem;
-	border: none;
-	border-radius: var(--radius);
-	cursor: pointer;
-	margin-bottom: 1rem;
-	transition: background-color 0.3s ease;
-}
-
-.filter-toggle:hover
-{
-	background-color: var(--accent-light);
-}
-
-
-/*======================================
-	Hidden Utility Class
-	- Used to hide elements like filters
-======================================*/
-.hidden
-{
-	display: none;
-}
-
-
-/*======================================
-	Styles for confession notes.
-======================================*/
-div#notes-container
-{
-	text-align: center;
-}
-textarea#confession-notes
-{
-
-	background-color: #252323;
-	color: #ffffff;
-	font-size: larger;
-
-	width:   100%;
-	height:  50vh;
-	padding: 10px;
-	resize:  none;
-	border-radius: var(--radius);
-	border: none;
-}
-
-button#confession-button
-{
-	background-color: var(--accent);
-	color: #fff;
-	border-color: #000;
-	padding: 15px;
-	width: 77px;
-	height: 45px;
-	border-radius: var(--radius);
-}
-
-/*======================================
-	Modal Popup Styling
-======================================*/
-.modal
-{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.7);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 9999;
-}
-
-.modal.hidden
-{
-	display: none;
-}
-
-.modal-content
-{
-	background: var(--page-background);
-	color: var(--text);
-	padding: 2rem;
-	border-radius: var(--radius);
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-	width: 90%;
-	max-width: 400px;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-}
-
-.modal-btn
-{
-	padding: 0.5rem 1rem;
-	border: none;
-	border-radius: var(--radius);
-	background-color: var(--accent);
-	color: white;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-}
-
-.modal-btn:hover
-{
-	background-color: var(--accent-light);
-}
-
-
-/*Homecard*/
-.home-card
-{
-	background-color: #2d2d2d;
-	padding: 1rem;
-	border-radius: var(--radius);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-	transition: background-color 0.3s ease;
-	cursor: pointer;
-}
 .home-card:hover
 {
 	background-color: #353535;
@@ -424,3 +232,264 @@ button#confession-button
 	padding: 1rem;
 	margin: 0;
 }
+
+
+/*======================================
+	Ad Board Section
+	- Cards and search for community listings
+======================================*/
+
+.ad-board
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	margin-top: 1rem;
+}
+
+.ad-card
+{
+	background-color: #2a2a2a;
+	padding: 1rem;
+	border-radius: var(--radius);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.ad-image
+{
+	max-width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 8px;
+	margin-bottom: 0.5rem;
+}
+
+.ad-search
+{
+	margin-bottom: 1rem;
+}
+
+
+/*======================================
+	Ad Form Inputs
+	- Input styling within the ad board section
+======================================*/
+#ad-board input,
+#ad-board textarea
+{
+	width: 100%;
+	padding: 0.75rem;
+	border-radius: var(--radius);
+	border: 1px solid #444;
+	background-color: #2f2f2f;
+	color: #ccc;
+	font-size: 1rem;
+}
+
+#ad-board input::placeholder
+{
+	color: #777;
+}
+
+
+/*======================================
+	Filter Toggle Button
+	- Used to expand/collapse filter inputs
+======================================*/
+.filter-toggle
+{
+	background-color: var(--accent);
+	color: #fff;
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: var(--radius);
+	cursor: pointer;
+	margin-bottom: 1rem;
+	transition: background-color 0.3s ease;
+}
+
+.filter-toggle:hover
+{
+	background-color: var(--accent-light);
+}
+
+
+/*======================================
+	Utility Class - Hidden
+	- Hides element via display: none
+======================================*/
+.hidden
+{
+	display: none !important;
+}
+
+
+
+
+/*======================================
+	Notes / Confession Page Styling
+	- Text area, mode toggle, and action button
+======================================*/
+
+#notes-container
+{
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#confession-notes
+{
+	width: 100%;
+	height: 200px;
+	padding: 1rem;
+	font-size: 1rem;
+	border-radius: var(--radius);
+	border: 1px solid #444;
+	background-color: #2f2f2f;
+	color: #ccc;
+	resize: vertical;
+}
+
+#confession-button
+{
+	background-color: var(--accent);
+	color: #fff;
+	padding: 0.75rem 1.25rem;
+	border: none;
+	border-radius: var(--radius);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+#copy-button
+{
+	background-color: #444;
+	color: #fff;
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: var(--radius);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+#copy-button:hover
+{
+	background-color: #666;
+}
+
+
+#confession-button:hover
+{
+	background-color: var(--accent-light);
+}
+
+#mode-label
+{
+	font-weight: bold;
+}
+
+.copy-controls
+{
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+
+/*======================================
+	Modal Popup
+	- Encryption/decryption credential modal
+======================================*/
+.modal
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 999;
+}
+
+.modal-content
+{
+	background-color: #2f2f2f;
+	padding: 2rem;
+	border-radius: var(--radius);
+	width: 90%;
+	max-width: 400px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content label
+{
+	display: block;
+	margin-top: 1rem;
+	margin-bottom: 0.25rem;
+}
+
+.modal-content input
+{
+	width: 100%;
+	padding: 0.75rem;
+	border-radius: var(--radius);
+	border: 1px solid #555;
+	background-color: #222;
+	color: #ccc;
+}
+
+.modal-btn
+{
+	background-color: var(--accent);
+	color: #fff;
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: var(--radius);
+	cursor: pointer;
+	margin-top: 1rem;
+	transition: background-color 0.3s ease;
+	width: 100%;
+}
+
+.modal-btn:hover
+{
+	background-color: var(--accent-light);
+}
+
+
+/*======================================
+	Toast Notification
+	- Temporary floating message for feedback
+======================================*/
+.toast
+{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #333;
+	color: #fff;
+	padding: 1rem 2rem;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+	font-size: 1.1rem;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+	z-index: 9999;
+	pointer-events: none;
+	text-align: center;
+}
+
+.toast.show
+{
+	opacity: 1;
+}
+
+
+
+
+

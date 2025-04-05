@@ -265,30 +265,221 @@ function showAuthModal(callback)
 
 
 
+const DELIMITER = '<57ad393d-5272-44a3-85b7-130ee5462848>';
+
 document.getElementById('confession-button').addEventListener('click', () =>
+{
+	showAuthModal((passcode, secret) =>
 	{
-		showAuthModal((passcode, secret) => {
-			const notesText = document.getElementById('confession-notes').value;
-			const isEncrypting = document.getElementById('notes-mode').checked;
+		const isEncrypting = document.getElementById('notes-mode').checked;
+
+		if (isEncrypting)
+		{
+			const notesText = document.getElementById('confession-notes').value.trim();
+			const confessionDate = document.getElementById('last-confession').value.trim();
+
+			if (!notesText || !confessionDate)
+			{
+				alert("Please enter both a date and your notes.");
+				return;
+			}
+
+			const payload = `${confessionDate}${DELIMITER}${notesText}`;
+
+			encryptCompressed(payload, passcode, secret)
+				.then(result =>
+				{
+					document.getElementById('confession-notes').value = result;
+				})
+				.catch(() =>
+				{
+					alert("Encryption failed.");
+				});
+		}
+		else
+		{
+			const encryptedText = document.getElementById('confession-notes').value.trim();
+
+			decryptCompressed(encryptedText, passcode, secret)
+				.then(result =>
+				{
+					if (!result.includes(DELIMITER))
+					{
+						alert("Decryption succeeded but format is invalid.");
+						return;
+					}
+
+					const [date, notes] = result.split(DELIMITER);
+					const dateInput = document.getElementById('last-confession');
+
+					// Direct assignment if already ISO format (YYYY-MM-DD)
+					if (/^\d{4}-\d{2}-\d{2}$/.test(date))
+					{
+						dateInput.value = date;
+						console.log("Setting last-confession to:", date);
+						setTimeout(() =>
+						{
+							const input = document.getElementById('last-confession');
+							console.log("Post-delay value still:", input.value);
+							input.focus();
+							input.blur();
+						}, 300);
+					}
+					else
+					{
+						const parsedDate = new Date(date);
+						if (!isNaN(parsedDate))
+						{
+							dateInput.value = parsedDate.toISOString().split('T')[0];
+						}
+						else
+						{
+							dateInput.value = '';
+							console.warn("Unable to parse confession date:", date);
+						}
+					}
+
+					document.getElementById('confession-notes').value = notes;
+				})
+				.catch(() =>
+				{
+					alert("Incorrect code or corrupted input.");
+				});
+		}
+	});
+});
+
+
+
+
+document.getElementById('copy-button').addEventListener('click', async () =>
+	{
+		const textarea = document.getElementById('confession-notes');
+		const status = document.getElementById('copy-status');
 	
-			if (isEncrypting)
+		if (!textarea.value.trim())
+		{
+			alert("Nothing to copy.");
+			return;
+		}
+	
+		if (!navigator.clipboard)
+		{
+			alert("Clipboard not supported in this browser.");
+			return;
+		}
+	
+		try
+		{
+			await navigator.clipboard.writeText(textarea.value);
+	
+			if (status)
 			{
-				encryptCompressed(notesText, passcode, secret)
-					.then(result => {
-						document.getElementById('confession-notes').value = result;
-					});
+				status.style.display = 'inline';
+				setTimeout(() =>
+				{
+					status.style.display = 'none';
+				}, 1500);
 			}
-			else
-			{
-				decryptCompressed(notesText, passcode, secret)
-					.then(result => {
-						document.getElementById('confession-notes').value = result;
-					})
-					.catch(() => alert("Incorrect code or corrupted input."));
-			}
+		}
+		catch (err)
+		{
+			console.error("Copy failed:", err);
+			alert("Failed to copy to clipboard.");
+		}
+	});
+
+	
+	
+
+
+// copy button for text area input in notes/confession
+document.getElementById('copy-button').addEventListener('click', () =>
+	{
+		const textarea = document.getElementById('confession-notes');
+	
+		if (!textarea.value.trim())
+		{
+			alert("Nothing to copy.");
+			return;
+		}
+	
+		navigator.clipboard.writeText(textarea.value).then(() =>
+		{
+			showToast(); // ← this replaces the old status span
+		}).catch(err =>
+		{
+			alert("Failed to copy.");
+			console.error(err);
 		});
 	});
 	
+	
 
 
 
+	function showToast(message = "Copied to clipboard")
+	{
+		const toast = document.getElementById('toast');
+		toast.textContent = message;
+		toast.classList.add('show');
+		toast.classList.remove('hidden');
+	
+		setTimeout(() =>
+		{
+			toast.classList.remove('show');
+		}, 2500);
+	}
+	
+
+
+
+// How long has it been since the their last confession?
+document.getElementById('last-confession').addEventListener('change', updateElapsedTime);
+
+function updateElapsedTime()
+{
+	const dateInput = document.getElementById('last-confession').value;
+	const output = document.getElementById('confession-elapsed');
+
+	if (!dateInput)
+	{
+		output.textContent = '';
+		return;
+	}
+
+	const selectedDate = new Date(dateInput);
+	const today = new Date();
+
+	// Clear the time portions
+	selectedDate.setHours(0, 0, 0, 0);
+	today.setHours(0, 0, 0, 0);
+
+	const diffTime = today.getTime() - selectedDate.getTime();
+	const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+	const weeks = Math.floor(diffDays / 7);
+	const days = diffDays % 7;
+
+	if (diffDays < 0)
+	{
+		output.textContent = "That date is in the future.";
+	}
+	else if (diffDays === 0)
+	{
+		output.textContent = "Today is your confession day!";
+	}
+	else
+	{
+		let message = "It has been ";
+		if (weeks > 0) message += `${weeks} week${weeks > 1 ? 's' : ''}`;
+		if (weeks > 0 && days > 0) message += " and ";
+		if (days > 0) message += `${days} day${days > 1 ? 's' : ''}`;
+		message += " since your last confession.";
+		output.textContent = message;
+	}
+}
+document.getElementById('last-confession').addEventListener('change', updateElapsedTime);
+window.addEventListener('DOMContentLoaded', () =>
+	{
+		updateElapsedTime(); // Updates on page load if a value is present
+	});
