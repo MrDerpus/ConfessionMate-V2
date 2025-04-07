@@ -67,20 +67,6 @@ document.getElementById('toggle-filters').addEventListener('click', () => {
 	container.classList.toggle('hidden');
 });
 
-// Navigation: show only the selected section, hide others
-document.querySelectorAll('nav a').forEach(link => {
-	link.addEventListener('click', e => {
-		e.preventDefault();
-		const target = link.getAttribute('data-target');
-
-		document.querySelectorAll('.page').forEach(page => {
-			page.classList.remove('active');
-		});
-
-		document.getElementById(target).classList.add('active');
-	});
-});
-
 
 
 // Load home cards
@@ -353,41 +339,41 @@ document.getElementById('confession-button').addEventListener('click', () =>
 
 
 document.getElementById('copy-button').addEventListener('click', async () =>
+{
+	const textarea = document.getElementById('confession-notes');
+	const status = document.getElementById('copy-status');
+
+	if (!textarea.value.trim())
 	{
-		const textarea = document.getElementById('confession-notes');
-		const status = document.getElementById('copy-status');
-	
-		if (!textarea.value.trim())
+		alert("Nothing to copy.");
+		return;
+	}
+
+	if (!navigator.clipboard)
+	{
+		alert("Clipboard not supported in this browser.");
+		return;
+	}
+
+	try
+	{
+		await navigator.clipboard.writeText(textarea.value);
+
+		if (status)
 		{
-			alert("Nothing to copy.");
-			return;
-		}
-	
-		if (!navigator.clipboard)
-		{
-			alert("Clipboard not supported in this browser.");
-			return;
-		}
-	
-		try
-		{
-			await navigator.clipboard.writeText(textarea.value);
-	
-			if (status)
+			status.style.display = 'inline';
+			setTimeout(() =>
 			{
-				status.style.display = 'inline';
-				setTimeout(() =>
-				{
-					status.style.display = 'none';
-				}, 1500);
-			}
+				status.style.display = 'none';
+			}, 1500);
 		}
-		catch (err)
-		{
-			console.error("Copy failed:", err);
-			alert("Failed to copy to clipboard.");
-		}
-	});
+	}
+	catch (err)
+	{
+		console.error("Copy failed:", err);
+		alert("Failed to copy to clipboard.");
+	}
+});
 
 	
 	
@@ -395,41 +381,41 @@ document.getElementById('copy-button').addEventListener('click', async () =>
 
 // copy button for text area input in notes/confession
 document.getElementById('copy-button').addEventListener('click', () =>
+{
+	const textarea = document.getElementById('confession-notes');
+
+	if (!textarea.value.trim())
 	{
-		const textarea = document.getElementById('confession-notes');
-	
-		if (!textarea.value.trim())
-		{
-			alert("Nothing to copy.");
-			return;
-		}
-	
-		navigator.clipboard.writeText(textarea.value).then(() =>
-		{
-			showToast(); // ← this replaces the old status span
-		}).catch(err =>
-		{
-			alert("Failed to copy.");
-			console.error(err);
-		});
-	});
-	
-	
-
-
-
-	function showToast(message = "Copied to clipboard")
-	{
-		const toast = document.getElementById('toast');
-		toast.textContent = message;
-		toast.classList.add('show');
-		toast.classList.remove('hidden');
-	
-		setTimeout(() =>
-		{
-			toast.classList.remove('show');
-		}, 2500);
+		alert("Nothing to copy.");
+		return;
 	}
+
+	navigator.clipboard.writeText(textarea.value).then(() =>
+	{
+		showToast(); // ← this replaces the old status span
+	}).catch(err =>
+	{
+		alert("Failed to copy.");
+		console.error(err);
+	});
+});
+	
+	
+
+
+
+function showToast(message = "Copied to clipboard")
+{
+	const toast = document.getElementById('toast');
+	toast.textContent = message;
+	toast.classList.add('show');
+	toast.classList.remove('hidden');
+
+	setTimeout(() =>
+	{
+		toast.classList.remove('show');
+	}, 2500);
+}
 	
 
 
@@ -480,6 +466,67 @@ function updateElapsedTime()
 }
 document.getElementById('last-confession').addEventListener('change', updateElapsedTime);
 window.addEventListener('DOMContentLoaded', () =>
+{
+	updateElapsedTime(); // Updates on page load if a value is present
+});
+
+
+
+function showPage(pageId)
+{
+	//console.log("Showing page:", pageId);
+	const fullId = `page-${pageId}`;
+	document.querySelectorAll('.page').forEach(page =>
 	{
-		updateElapsedTime(); // Updates on page load if a value is present
+		page.classList.remove('active');
 	});
+
+	const page = document.getElementById(fullId);
+	if (page)
+	{
+		page.classList.add('active');
+		window.scrollTo(0, 0);
+	}
+	else
+	{
+		console.warn(`No page section found for id: ${fullId}`);
+	}
+}
+
+function getCurrentPageFromHash()
+{
+	return window.location.hash.replace('#', '') || 'home';
+}
+
+// Load correct section on first load
+window.addEventListener('DOMContentLoaded', () =>
+{
+	setTimeout(() =>
+	{
+		showPage(getCurrentPageFromHash());
+	}, 10);
+});
+
+// Respond to back/forward hash navigation
+window.addEventListener('hashchange', () =>
+{
+	showPage(getCurrentPageFromHash());
+});
+
+// Force showPage even if the user clicks the same tab
+document.querySelectorAll('nav a[data-target]').forEach(link =>
+{
+	link.addEventListener('click', (e) =>
+	{
+		const target = link.getAttribute('data-target');
+		const current = getCurrentPageFromHash();
+
+		// If we're clicking the same tab again
+		if (current === target)
+		{
+			e.preventDefault(); // prevent anchor scrolling
+			showPage(target);   // force it
+		}
+	});
+});
+	
