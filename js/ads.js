@@ -15,14 +15,12 @@ function renderAds()
 	const board = document.getElementById('ad-board');
 	board.innerHTML = '';
 
-	// Read and normalize input values
 	const categoryFilter = document.getElementById('category-input').value.trim().toUpperCase();
 	const countryFilter  = document.getElementById('country-input').value.trim().toUpperCase();
 	const stateFilter    = document.getElementById('state-input').value.trim().toUpperCase();
 	const cityFilter     = document.getElementById('city-input').value.trim().toUpperCase();
 	const suburbFilter   = document.getElementById('suburb-input').value.trim().toUpperCase();
 
-	// Filter ads by all criteria (case-insensitive includes)
 	const filteredAds = allAds.filter(ad =>
 		ad.category.toUpperCase().includes(categoryFilter) &&
 		ad.country.toUpperCase().includes(countryFilter) &&
@@ -31,26 +29,62 @@ function renderAds()
 		ad.suburb.toUpperCase().includes(suburbFilter)
 	);
 
-	// Display message if no ads match the filters
 	if (filteredAds.length === 0)
 	{
 		board.innerHTML = '<p>No ads found for this selection.</p>';
 		return;
 	}
 
-	// Render matching ad cards
-	filteredAds.forEach(ad => {
-		const adCard = document.createElement('div');
-		adCard.classList.add('ad-card');
-		adCard.innerHTML = `
-			<img src="${ad.image}" alt="${ad.name} Card" class="ad-image">
-			<h4>${ad.name}</h4>
-			<p>${ad.blurb}</p>
-			<a href="${ad.url}" target="_blank">Visit Site</a>
-		`;
-		board.appendChild(adCard);
+	filteredAds.forEach(ad =>
+	{
+		let card;
+
+		if (ad.expandable)
+		{
+			card = document.createElement('details');
+			card.classList.add('ad-card', 'expandable');
+
+			const summary = document.createElement('summary');
+			summary.innerHTML = `
+				<img src="${ad.image}" alt="${ad.name} Card" class="ad-image">
+				<h4>${ad.name}</h4>
+				<p>${ad.blurb}</p>
+				<a href="${ad.url}" target="_blank">Visit Site</a>
+			`;
+
+			const extraText = document.createElement('p');
+			extraText.classList.add('expanded-text');
+			extraText.innerHTML = ad.expandedText || '';
+
+			card.appendChild(summary);
+			card.appendChild(extraText);
+		}
+		else
+		{
+			card = document.createElement('div');
+			card.classList.add('ad-card');
+			card.innerHTML = `
+				<img src="${ad.image}" alt="${ad.name} Card" class="ad-image">
+				<h4>${ad.name}</h4>
+				<p>${ad.blurb}</p>
+				<a href="${ad.url}" target="_blank">Visit Site</a>
+			`;
+		}
+
+		// Apply highlight or custom color
+		if (ad.highlight)
+		{
+			card.classList.add('highlight');
+			if (ad.color)
+			{
+				card.style.backgroundColor = ad.color;
+			}
+		}
+
+		board.appendChild(card);
 	});
 }
+
 
 // Attach event listeners for all filter inputs
 document.getElementById('category-input').addEventListener('input', renderAds);

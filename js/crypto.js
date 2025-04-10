@@ -107,6 +107,7 @@ async function decryptCompressed(compressedText, passcode, secret)
 		if (!result)
 			throw new Error("Failed to decompress decrypted text");
 
+		
 		return result;
 	}
 	catch (err)

@@ -118,19 +118,26 @@ document.getElementById('confession-button').addEventListener('click', () =>
 
 					const [date, notes] = result.split(DELIMITER);
 					const dateInput = document.getElementById('last-confession');
+					
+
 
 					// Direct assignment if already ISO format (YYYY-MM-DD)
 					if (/^\d{4}-\d{2}-\d{2}$/.test(date))
 					{
 						dateInput.value = date;
 						console.log("Setting last-confession to:", date);
-						setTimeout(() =>
-						{
+					
+						setTimeout(() => {
 							const input = document.getElementById('last-confession');
 							console.log("Post-delay value still:", input.value);
 							input.focus();
 							input.blur();
-						}, 300);
+					
+							requestAnimationFrame(() => {
+								console.log("✅ Triggering updateElapsedTime from ISO block");
+								updateElapsedTime();
+							});
+						}, 100);
 					}
 					else
 					{
@@ -138,6 +145,12 @@ document.getElementById('confession-button').addEventListener('click', () =>
 						if (!isNaN(parsedDate))
 						{
 							dateInput.value = parsedDate.toISOString().split('T')[0];
+							setTimeout(() => {
+								requestAnimationFrame(() => {
+									console.log("🛠 Calling updateElapsedTime after layout and frame");
+									updateElapsedTime();
+								});
+							}, 50);
 						}
 						else
 						{

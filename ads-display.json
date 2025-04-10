@@ -1,25 +1,18 @@
 [
 	{
-		"name": "Caries Cleaning",
-		"image": "/media/imgs/ads/150x150.png",
-		"blurb": "Use code TUXKL75490 for 10% off.",
-		"url": "www.google.com.au",
+		"image": "logo.jpg",
+		"name": "Joe's Car Wash",
+		"blurb": "Fast, honest, Catholic-owned service.",
+		"url": "https://joescarwash.com.au",
 		"category": "CLEANING",
-		"country": "AMERICA",
-		"state": "WASHINGTON",
-		"city": "TACOMA",
-		"suburb": "SOUTH HILL"
-	},
-
-	{
-		"name": "Franks Food",
-		"image": "/media/imgs/ads/150x150.png", 
-		"blurb": "Use code KGHMN78738 for 10% off.",
-		"url": "www.google.com.au",
-		"category": "FOOD",
 		"country": "AUSTRALIA",
 		"state": "QUEENSLAND",
 		"city": "BRISBANE",
-		"suburb": "OXLEY"
+		"suburb": "SOUTH BANK",
+		"expandable": true,
+		"expandedText": "<h1 style=\"color:#000\">We’ve proudly served Brisbane since 2012. Family discounts and Sunday service available.</h1>",
+		"highlight": true,
+		"color": "#4466cc"
 	}
+	
 ]

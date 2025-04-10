@@ -493,3 +493,28 @@ footer
 
 
 
+/* Expandable card styling 
+.ad-card.expandable summary {
+	cursor: pointer;
+	padding: 1rem;
+	font-weight: bold;
+	background-color: #2e2e2e;
+	color: var(--accent-light);
+	border-bottom: 1px solid #3a3a3a;
+}
+
+.ad-card.expandable[open] summary {
+	background-color: #333;
+}
+
+.ad-card.expandable p.expanded-text {
+	padding: 1rem;
+	margin: 0;
+	border-top: 1px solid #444;
+}
+
+/* Highlighted ads 
+.ad-card.highlight {
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+	border: 2px solid var(--accent-light);
+}*/
