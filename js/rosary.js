@@ -85,7 +85,7 @@ function bead_count() {
 		document.getElementById('prayer-title').innerHTML = prayers[3][0]; // Our Father
 		document.getElementById('prayer').innerHTML = prayers[3][1]; 
 		update_bead(); // Turn the first bead yellow
-		document.getElementById('decade').innerText = 'Decade: ' + decade;
+		document.getElementById('decade').innerText = 'Decades completed: ' + decade;
 	} else if (count >= 4 && count <= 13) {
 		// Beads 2 to 11 are Hail Mary's
 		document.getElementById('prayer-title').innerHTML = prayers[4][0]; // Hail Mary
