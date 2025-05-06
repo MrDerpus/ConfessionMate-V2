@@ -48,9 +48,9 @@ function showAuthModal(callback)
 		const passcode = pinInput.value.trim();
 		const secret = secretInput.value.trim();
 
-		if (passcode.length !== 4 || isNaN(passcode))
+		if (passcode.length < 4 || passcode.length > 6 || isNaN(passcode))
 		{
-			alert("Please enter a valid 4-digit passcode.");
+			alert("Please enter a valid 4 - 6 digit passcode.");
 			return;
 		}
 		if (!secret)
@@ -134,7 +134,7 @@ document.getElementById('confession-button').addEventListener('click', () =>
 							input.blur();
 					
 							requestAnimationFrame(() => {
-								console.log("✅ Triggering updateElapsedTime from ISO block");
+								//console.log("✅ Triggering updateElapsedTime from ISO block");
 								updateElapsedTime();
 							});
 						}, 100);
@@ -147,7 +147,7 @@ document.getElementById('confession-button').addEventListener('click', () =>
 							dateInput.value = parsedDate.toISOString().split('T')[0];
 							setTimeout(() => {
 								requestAnimationFrame(() => {
-									console.log("🛠 Calling updateElapsedTime after layout and frame");
+									//console.log("🛠 Calling updateElapsedTime after layout and frame");
 									updateElapsedTime();
 								});
 							}, 50);

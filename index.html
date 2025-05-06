@@ -7,17 +7,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ConfessionMate</title>
 	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="rosary.css">
 </head>
 <body>
 	<header>
-		<!--h1>ConfessionMate</h1-->
 		<nav>
 			<ul>
-				<li><a href="#home" data-target="home">Home</a></li>
-				<li><a href="#rosary" data-target="rosary">Rosary</a></li>
-				<li><a href="#notes" data-target="notes">Notes</a></li>
+				<li><a href="#home"      data-target="home">Home</a></li>
+				<li><a href="#rosary"    data-target="rosary">Rosary</a></li>
+				<li><a href="#notes"     data-target="notes">Notes</a></li>
 				<li><a href="#community" data-target="community">Community</a></li>
-				<li><a href="#about" data-target="about">About</a></li>
+				<li><a href="#about"     data-target="about">About</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -25,7 +25,7 @@
 	<div class="page-container">
 		<section id="page-home" class="page active">
 			<h2 class="home-welcome">Welcome to ConfessionMate</h2>
-			<p class="home-intro">
+			<p  class="home-intro">
 				Here are some resources you may find helpful.
 			</p>
 		
@@ -36,8 +36,31 @@
 
 
 		<section id="page-rosary" class="page">
-			<h2>Rosary</h2>
-			<p>Pray through each bead with peace and purpose.</p>
+			<div id="status">
+				<h3 id="decade">Decades completed: 0</h3>
+			</div>
+	
+			<div id="rosary">
+				<center>
+					<img id="cross"   class="rosary-cross" src="media/imgs/rosary/cross-red.png">
+					<img id="mary"    class="rosary-mary"  src="media/imgs/rosary/MotherMary-red.png">
+					<img id="bead_1"  class="rosary-bead"  src="media/imgs/rosary/bead-red.png"><br><!-- Our Father bead, followed by Hail Mary beads-->
+					<img id="bead_2"  class="rosary-bead"  src="media/imgs/rosary/bead-red.png">
+					<img id="bead_3"  class="rosary-bead"  src="media/imgs/rosary/bead-red.png">
+					<img id="bead_4"  class="rosary-bead"  src="media/imgs/rosary/bead-red.png">
+					<img id="bead_5"  class="rosary-bead"  src="media/imgs/rosary/bead-red.png">
+					<img id="bead_6"  class="rosary-bead"  src="media/imgs/rosary/bead-red.png">
+					<img id="bead_7"  class="rosary-bead"  src="media/imgs/rosary/bead-red.png">
+					<img id="bead_8"  class="rosary-bead"  src="media/imgs/rosary/bead-red.png">
+					<img id="bead_9"  class="rosary-bead"  src="media/imgs/rosary/bead-red.png">
+					<img id="bead_10" class="rosary-bead"  src="media/imgs/rosary/bead-red.png">
+					<img id="bead_11" class="rosary-bead"  src="media/imgs/rosary/bead-red.png"><br>
+
+					<button id="rosary_button" class="filter-toggle" >NEXT</button>
+					<h3 id="prayer-title"></h3>
+					<h4 id="prayer"></h4>
+				</center>
+			</div>
 		</section>
 
 		<section id="page-notes" class="page">
@@ -134,8 +157,8 @@
 		<div class="modal-content">
 			<h2>Enter Your Confession Key</h2>
 	
-			<label for="pin-input">Passcode (4 digits):</label>
-			<input type="password" id="pin-input" maxlength="4" inputmode="numeric" pattern="[0-9]*" />
+			<label for="pin-input">Passcode (4 - 6 digits):</label>
+			<input type="password" id="pin-input" maxlength="6" inputmode="numeric" pattern="[0-9]*" />
 	
 			<label for="secret-input">Secret Word (5+ characters):</label>
 			<input type="text" id="secret-input" />
@@ -158,6 +181,6 @@
 	<script src="js/time-elapsed.js"></script>
 	<script src="js/site-navigation.js"></script>
 	<script src="js/confession-handeling.js"></script>
-	<!--script src="script.js"></script-->
+	<script src="js/rosary.js"></script>
 </body>
 </html>

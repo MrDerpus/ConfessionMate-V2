@@ -1,0 +1,26 @@
+img.rosary-bead
+{
+    width:  20px;
+    height: 20px;
+    /*display: block;*/
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+}
+img.rosary-cross
+{
+    width:  80px;
+    height: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+}
+img.rosary-mary
+{
+    width:  75px;
+    height: 75px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
